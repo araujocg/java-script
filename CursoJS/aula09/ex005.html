@@ -23,16 +23,22 @@
         /*window.document.write(window.navigator.appName)*/
         /*window.document.write(window.document.URL)*/
         var p1 = window.document.getElementsByTagName('p')[1]
-        /*window.document.write(`Está escrito assim ("${p1.innerText}")`)
+        window.document.write(`Está escrito assim ("${p1.innerText}")`)
         p1.style.color = "blue"
-        */
+        
         /*document.write(p1.innerHTML)*/
-        /*var d = window.document.getElementById('msg')
+        var d = window.document.getElementById('msg')
         d.style.background = 'green'
         d.innerText = 'Estou aguardando'
-        */
-        var d = window.document.querySelector('div#msg')
+        d.addEventListener('click', clicou)
+        function clicou() {
+            d.style.backgroundColor = 'blue'
+            d.innerText = 'Você Clicou'
+        }
+        
+        /*var d = window.document.querySelector('div#msg')
         d.style.background = 'blue'
+        */
     </script>
     
 </body>
