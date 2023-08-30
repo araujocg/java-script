@@ -1,0 +1,66 @@
+null //nula/sem nada dentro
+
+n1.toFixed(2).replace('.', ',') // Trocar o ponto por uma virgula
+n1.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'}) // Para deixar o valor em Reais
+
+ === // Para verificar se é identico!
+
+query.selector
+quando é id (#)
+quando é class (.)
+
+(Event reference) Site com todos os eventos do DOM qualquer coisa procura na aula 10 JS
+
+var vaga = [2,3,4]
+vaga.push(8)
+vaga = 2,3,4,8
+vaga.indexOf(4) // vai me falar qual o posição do valor q eu coloquei.(q no caso é 2)
+vaga.sort() // deixa em ordem crescente
+
+
+
+Referencias on-line{
+Referência MDN
+W3C Standards
+WHATWG Living Standard
+W3Schools
+}
+ 
+MB == MEGABYTES
+Mb == MEGABITS
+
+Quando precisar usar precisar usar o msm id use o class!!!! usar o msm id é errado
+vc pode usar varias class em um msm h1 por exemplo. assim como tbm pode no h2,article,picture... em tudo!!!
+inclusive vc tbm pode colocar ela junto com um id!! só q o id sobrepõe tipo se tiver 2 background-color nos 2 ele vai pegar o do id
+
+formulario{
+   existem 2 metódos para envio de formulario
+	GET [metodo padrão]{
+		usar quando os dados n forem sensiveis, e quando vc quiser q o link seja compartilhável;
+		Quando vc envia dados por GET vc só pode enviar até 3000 bytes(uma letra, um número, etc.);
+		Não usar para mandar arquivos;
+		
+        }
+        POST{
+		usar quando os dados forem sensiveis;
+		q n deixa "visivel" as informações na url(no link do site))Pra você proteger vc precisa criptografar os dados e-
+		pra isso vc precisa usar o https q é um outro protocolo de transmissão de dados;
+		se o seus dados tiverem mais de 3000bytes;
+		usar para mandar arquivos;
+        }
+}
+
+Estudar um pouco mais pra saber como funciona https, criptografia de dados mas isso é coisa mais avançada
+
+Verifique sempre na maioria dos navegadores 
+
+estudar mais sobre RegEx(expressões regulares)
+
+Quando vc utilizar o envio de arquivos vc n pode usar o método GET vc tem q usar o método POST 
+
+Ver/estudar mais media query
+
+Ctrl + ; = /**/
+
+	   
+
