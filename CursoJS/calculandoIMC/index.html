@@ -45,12 +45,12 @@
         </table>
         <section>
             <label for="peso">Peso:</label><br>
-            <input type="number" name="peso" id="peso" placeholder="Digite seu Peso" required><br>
+            <input type="number" name="peso" id="peso" placeholder="Digite seu Peso" required min="20" max="200"><br>
             <label for="id_altura">Altura:</label><br>
-            <input type="number" name="altura" id="altura" placeholder="Digite sua Altura" required>
+            <input type="number" name="altura" id="altura" placeholder="Digite sua Altura" min="0" max="2" required>
         </section>
-        <input type="button" value="Enviar" onclick="Calcular()" id="botao">
         <div id="res"></div>
+        <input type="button" value="Enviar" onclick="Calcular()" id="botao">
     </div>
     <script src="script.js"></script>
 </body>
