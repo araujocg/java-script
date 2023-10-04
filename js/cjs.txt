@@ -31,7 +31,8 @@ Mb == MEGABITS
 
 Quando precisar usar precisar usar o msm id use o class!!!! usar o msm id é errado
 vc pode usar varias class em um msm h1 por exemplo. assim como tbm pode no h2,article,picture... em tudo!!!
-inclusive vc tbm pode colocar ela junto com um id!! só q o id sobrepõe tipo se tiver 2 background-color nos 2 ele vai pegar o do id
+inclusive vc tbm pode colocar ela junto com um id!! só q o id sobrepõe tipo se tiver 2 background-color nos 2
+ ele vai pegar o do id
 
 formulario{
    existem 2 metódos para envio de formulario
@@ -61,6 +62,18 @@ Quando vc utilizar o envio de arquivos vc n pode usar o método GET vc tem q usa
 Ver/estudar mais media query
 
 Ctrl + ; = /**/
+
+Usar .map() quando for preciso traduzir ou mapear todos os elemntos de um array para outro
+conjunto de valores
+
+Usar .filter() Quando é preciso remover elementos indesejados com base em algumas condições
+// retorna um novo array objeto
+
+Usar .reduce() Quando é preciso encontrar um valor comulativo concatenado com base elementos de
+todo um array
+
+Usar .every() Quando for preciso testar se todos os elementos de um array passam por um teste
+ em especifico // retorna sempre um resultado booleano(V/F)
 
 	   
 
