@@ -63,17 +63,26 @@ Ver/estudar mais media query
 
 Ctrl + ; = /**/
 
-Usar .map() quando for preciso traduzir ou mapear todos os elemntos de um array para outro
+Usar .map() Quando for preciso traduzir ou mapear todos os elementos de um array para outro
 conjunto de valores
 
 Usar .filter() Quando é preciso remover elementos indesejados com base em algumas condições
-// retorna um novo array objeto
+// retorna um novo array/objeto
 
 Usar .reduce() Quando é preciso encontrar um valor comulativo concatenado com base elementos de
 todo um array
 
 Usar .every() Quando for preciso testar se todos os elementos de um array passam por um teste
  em especifico // retorna sempre um resultado booleano(V/F)
+
+Usar .some() Quando for preciso testar se pelo menos 1 elemento do array passa por um teste específico
+// retorna sempre um resultado booleano
+
+Usar .find() Quando for preciso procurar ou verificar por um valor dentro de um array/objeto sendo q esse
+retorno vai ser do PRIMEIRO elemento q satisfazer o test
+
+Usar .includes() Quando for preciso saber se um array/objeto possue determinado valor ou elemento
+// retorna sempre valor booleano
 
 	   
 
