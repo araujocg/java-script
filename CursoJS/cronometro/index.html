@@ -11,8 +11,15 @@
         <section>
             <h1>CRONÔMETRO</h1>
         </section>
-        <div class="cronometro">
-        
+        <div class="container">
+            <div id="cronometro">
+                00:00:00
+            </div>
+            <div id="controles">
+                <button id="iniciar" class="botao" onclick="iniciarCronometro()">Iniciar</button>
+                <button id="parar" class="botao" onclick="pararCronometro()">Parar</button>
+                <button id="resetar" class="botao" onclick="resetarCronometro()">Resetar</button>
+            </div>
         </div>
     </main>
     <script src="script.js"></script>
