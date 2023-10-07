@@ -18,7 +18,7 @@ const people = [
 ]
 const filteredUser = people.filter(props =>{
     return (
-        props.group.includes("editor")
+        props.group.includes("edi")
     )
 })
 console.log(filteredUser)
