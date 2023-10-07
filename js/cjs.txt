@@ -84,5 +84,7 @@ retorno vai ser do PRIMEIRO elemento q satisfazer o test
 Usar .includes() Quando for preciso saber se um array/objeto possue determinado valor ou elemento
 // retorna sempre valor booleano
 
+console.table() // é um console.log normal mas retorna o conteudo em versão de tabela
+
 	   
 
