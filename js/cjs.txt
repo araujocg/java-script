@@ -86,5 +86,8 @@ Usar .includes() Quando for preciso saber se um array/objeto possue determinado 
 
 console.table() // é um console.log normal mas retorna o conteudo em versão de tabela
 
+O método join() é um método disponível em arrays em JavaScript que é usado para unir todos os elementos de
+um array em uma única string e retornar essa string resultante.
+
 	   
 
