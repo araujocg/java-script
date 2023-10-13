@@ -8,21 +8,28 @@ const resposta = [
 const indiceAleatorio = Math.floor(Math.random() * resposta.length)
 const respostaSorteada = resposta[indiceAleatorio]
 const letterAlreadyClicked = []
-const divs = []
+const divr = []
 console.log(respostaSorteada.nome)
 
 for (let i = 1; i <= respostaSorteada.nome.length; i++) {
-    divs.push(document.getElementById(`letra_resposta0${i}`));
+    divr.push(document.getElementById(`letra_resposta0${i}`));
 }
+//
 
-function atualizarDivsComLetras(palavra, letra) {
+//
+
+//
+function atualizarDivrComLetras(palavra, letra) {
     const posicoes = foundPositionLetter(palavra, letra);
     
     for (const posicao of posicoes) {
-        divs[posicao].textContent = letra;
+        divr[posicao].textContent = letra;
     }
 }
 
+//
+
+//
 function foundPositionLetter(palavra, letra) {
     const position = [];
 
@@ -34,11 +41,18 @@ function foundPositionLetter(palavra, letra) {
     return position;
 }
 
+
+//
+
+//
 function alreadyClicked(letra){ // verificar se a letra ja foi clicada
     return letterAlreadyClicked.includes(letra)
 }
 
-function check(letra){ // verificar se a letra esta na palavra
+//
+
+// verificar se a letra esta na palavra
+function check(letra){ 
     if (respostaSorteada.nome.includes(letra)){
         return true
     } else {
@@ -46,16 +60,16 @@ function check(letra){ // verificar se a letra esta na palavra
     }
 }
 
+//
 
-function forcaFunction(letra){ // função principal
+// função principal
+function forcaFunction(letra){ 
     if (!alreadyClicked(letra)){
         letterAlreadyClicked.push(letra)
         if (check(letra)){
-            atualizarDivsComLetras(respostaSorteada.nome, letra)
-        }
+            atualizarDivrComLetras(respostaSorteada.nome, letra)
+        } 
     } else {
         window.alert('Esta letra já foi clicada.')
     }
 }
-//////// ESTA MOSTRANDO JA A POSIÇÃO DA LETRA EM QUESTÃO
-//////// AGR ACHO Q JA ESTA NA HORA DE COMEÇAR A COLOCAR A LETRA NA CORRETA NO PRA APARECER AO INVEZ DE MANDAR UM WINDOW.ALERT XD
