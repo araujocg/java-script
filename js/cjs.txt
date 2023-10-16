@@ -85,9 +85,12 @@ Usar .includes() Quando for preciso saber se um array/objeto possue determinado 
 // retorna sempre valor booleano
 
 console.table() // é um console.log normal mas retorna o conteudo em versão de tabela
+console.error() // é um console.log normal mas retorna o conteudo em vermelho representando erro
 
 O método join() é um método disponível em arrays em JavaScript que é usado para unir todos os elementos de
 um array em uma única string e retornar essa string resultante.
+
+Promise() é um objeto q representar eventual conclusão ou falha de uma operação / ou estar pendente 
 
 	   
 
