@@ -92,5 +92,9 @@ um array em uma única string e retornar essa string resultante.
 
 Promise() é um objeto q representar eventual conclusão ou falha de uma operação / ou estar pendente 
 
+Classes não são hoisted ous seja classes n são jogadas pra cima do codigo quando ele é carregado, então a gente 
+n consegue chamar elas e dps declarar / Diferente das functions q são jogadas pra cima 
+
+
 	   
 
