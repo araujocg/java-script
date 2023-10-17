@@ -18,6 +18,8 @@ for (let i = 1; i <= respostaSorteada.nome.length; i++) {
 for (let i = 1; i <= 26; i++) {
     divt.push(document.getElementById(`letra_teclado${i}`));
 }
+const imagemForca = document.getElementById('imagem-forca')
+let Erros = 0
 
 //////////////////////////////////////
 
@@ -30,6 +32,13 @@ function forcaFunction(letra){
             atualizarDivtCORRETO(letra)
         } else{
             atualizarDivtERRO(letra) 
+            if (Erros<6){
+                Erros++
+                console.log(Erros)
+                imagemForca.style.backgroundImage = `url(imagens/imagem-forca0${Erros}.png)`
+            } else{
+                
+            }
         }
     } else {
         window.alert('Esta letra já foi clicada.')
