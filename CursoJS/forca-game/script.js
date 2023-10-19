@@ -5,21 +5,39 @@ const resposta = [
     {nome:"leite"}
 ]
 
-////////////////////////////////////
-
-const indiceAleatorio = Math.floor(Math.random() * resposta.length)
-const respostaSorteada = resposta[indiceAleatorio]
-const letterAlreadyClicked = []
-const divr = []
-const divt = []
-for (let i = 1; i <= respostaSorteada.nome.length; i++) {
-    divr.push(document.getElementById(`letra_resposta0${i}`));
-}
-for (let i = 1; i <= 26; i++) {
-    divt.push(document.getElementById(`letra_teclado${i}`));
-}
+let letterAlreadyClicked = []
+let erros = 0
+let respostaSorteada = ''
+let divr = []
+let divt = []
 const imagemForca = document.getElementById('imagem-forca')
-let Erros = 0
+
+////////////////////////////////////
+function iniciarJogo(){
+    const indiceAleatorio = Math.floor(Math.random() * resposta.length)
+    respostaSorteada = resposta[indiceAleatorio]
+    letterAlreadyClicked.length = 0;
+    erros = 0
+    divr.length = 0;
+    divt.length = 0;
+    for (let i = 1; i <= respostaSorteada.nome.length; i++) {
+        divr.push(document.getElementById(`letra_resposta0${i}`));
+    }
+    for (let i = 1; i <= 26; i++) {
+        divt.push(document.getElementById(`letra_teclado${i}`));
+    }
+}
+function desistirJogo(){
+    letterAlreadyClicked = []
+    erros = 0
+    imagemForca.style.backgroundImage = `url(imagens/imagem-forca0${erros}.png)`
+    divr.forEach(div => div.textContent = '')
+    divr.length = 0;
+    divt.forEach (div => {
+        div.style.background = '#FFF'
+        div.style.color = '#000'
+    } )
+}
 
 //////////////////////////////////////
 
@@ -32,10 +50,10 @@ function forcaFunction(letra){
             atualizarDivtCORRETO(letra)
         } else{
             atualizarDivtERRO(letra) 
-            if (Erros<6){
-                Erros++
-                console.log(Erros)
-                imagemForca.style.backgroundImage = `url(imagens/imagem-forca0${Erros}.png)`
+            if (erros<6){
+                erros++
+                console.log(erros)
+                imagemForca.style.backgroundImage = `url(imagens/imagem-forca0${erros}.png)`
             } else{
                 
             }
@@ -44,6 +62,7 @@ function forcaFunction(letra){
         window.alert('Esta letra já foi clicada.')
     }
 }
+
 
 /////////////////////////////////////////
 
