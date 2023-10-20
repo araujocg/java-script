@@ -95,6 +95,10 @@ Promise() é um objeto q representar eventual conclusão ou falha de uma operaç
 Classes não são hoisted ous seja classes n são jogadas pra cima do codigo quando ele é carregado, então a gente 
 n consegue chamar elas e dps declarar / Diferente das functions q são jogadas pra cima 
 
+async function () // quando tem o async eu estou dizendo q a função q tem algum tipo de codigo rodando dentro dela q é assíncrono e que
+await // serve para o programar esperar concluir e ai ir pra proxima linha // Para utilizar o await é necessário q i await esteja dentro
+de uma function q usa o async
+
 
 	   
 
