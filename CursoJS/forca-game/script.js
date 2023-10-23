@@ -5,15 +5,18 @@ const resposta = [
     {nome:"leite"}
 ]
 
+let letterFound = new Set()
 let letterAlreadyClicked = []
-let erros = 0
+let erros = ''
 let respostaSorteada = ''
 let divr = []
 let divt = []
+let rodando = false
 const imagemForca = document.getElementById('imagem-forca')
 
 ////////////////////////////////////
 function iniciarJogo(){
+    desistirJogo()
     const indiceAleatorio = Math.floor(Math.random() * resposta.length)
     respostaSorteada = resposta[indiceAleatorio]
     letterAlreadyClicked.length = 0;
@@ -26,43 +29,59 @@ function iniciarJogo(){
     for (let i = 1; i <= 26; i++) {
         divt.push(document.getElementById(`letra_teclado${i}`));
     }
+    rodando = true
 }
 function desistirJogo(){
-    letterAlreadyClicked = []
+    letterAlreadyClicked.length = 0
     erros = 0
     imagemForca.style.backgroundImage = `url(imagens/imagem-forca0${erros}.png)`
     divr.forEach(div => div.textContent = '')
-    divr.length = 0;
-    divt.forEach (div => {
-        div.style.background = '#FFF'
-        div.style.color = '#000'
-    } )
+    divr.length = 0
+    divt.forEach(div => {
+        div.style.color = '#000000'
+        div.style.background = '#FFFFFF'
+    })
+    divr.length = 0
+    rodando = false
 }
 
 //////////////////////////////////////
 
 // função principal
 function forcaFunction(letra){ 
-    if (!alreadyClicked(letra)){
-        letterAlreadyClicked.push(letra)
-        if (check(letra)){
-            atualizarDivrComLetras(respostaSorteada.nome, letra)
-            atualizarDivtCORRETO(letra)
-        } else{
-            atualizarDivtERRO(letra) 
-            if (erros<6){
-                erros++
-                console.log(erros)
-                imagemForca.style.backgroundImage = `url(imagens/imagem-forca0${erros}.png)`
+    if (rodando){
+        if (!alreadyClicked(letra)){
+            letterAlreadyClicked.push(letra)
+            if (check(letra)){
+                atualizarDivrComLetras(respostaSorteada.nome, letra)
+                atualizarDivtCORRETO(letra)
+                verificarVitoria()
             } else{
-                
+                atualizarDivtERRO(letra) 
+                if (erros<5){
+                    erros++
+                    console.log(erros)
+                    imagemForca.style.backgroundImage = `url(imagens/imagem-forca0${erros}.png)`
+                } else{
+                    imagemForca.style.backgroundImage = `url(imagens/imagem-forca0${6}.png)`
+                    window.alert(`Que pena parece que você perdeu :( a palavra certa era "${respostaSorteada.nome}"`)
+                    desistirJogo()
+                }
             }
+        } else {
+            window.alert('Esta letra já foi clicada.')
         }
-    } else {
-        window.alert('Esta letra já foi clicada.')
     }
 }
 
+/////////////////////////////////////////
+
+function verificarVitoria() {
+    if (letterFound.size === respostaSorteada.nome.length) {
+        console.log('Parabéns, você venceu!');
+        desistirJogo()
+    }
+}
 
 /////////////////////////////////////////
 
@@ -88,12 +107,13 @@ function atualizarDivrComLetras(palavra, letra) {
     
     for (const posicao of posicoes) {
         divr[posicao].textContent = letra;
+        letterFound.add(posicao)
     }
 }
 function foundPositionLetter(palavra, letra) {
     const position = [];
 
-    for (let p = 0; p < palavra.length; p++) {
+    for (let p = 0; p < 5; p++) {
         if (palavra[p] === letra) {
             position.push(p);
         }
@@ -115,14 +135,6 @@ function atualizarDivtERRO(letra) {
 }
 
 ///////////////////////////////////////////////
-
-function atualizarDivrComLetras(palavra, letra) {
-    const posicoes = foundPositionLetter(palavra, letra);
-    
-    for (const posicao of posicoes) {
-        divr[posicao].textContent = letra;
-    }
-}
 
 
 
