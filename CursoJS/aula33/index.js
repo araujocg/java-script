@@ -1,17 +1,36 @@
-const listaDeAlunos = [
-    {email:'alice.smith1234@email.com', teste:'Aprovado'},
-    {email:'john.doe5678@email.com', teste:'Reprovado'},
-    {email:'emily.jones99@email.com', teste:'Reprovado'},
-    {email:'sam.wilson12@email.com', teste:'Aprovado'},
-    {email:'lisa.martin789@email.com', teste:'Reprovado'},
-    {email:'michael.brown45@email.com', teste:'Reprovado'},
-    {email:'sarah.wilson23@email.com', teste:'Reprovado'},
-    {email:'daniel.jackson678@email.com', teste:'Aprovado'},
-    {email:'laura.anderson56@email.com', teste:'Reprovado'},
-    {email:'kevin.white789@email.com', teste:'Aprovado'}
-]
-listaDeAlunos.forEach((aluno, posicao) => {
-    if (aluno.teste === 'Aprovado'){
-        console.log(`o Email de aprovação foi enviado com sucesso para ${aluno.email} a posição foi ${posicao+1} `)
-    }
+const cincoMil = () => new Promise((resolve, reject) =>{
+    setTimeout(() => resolve("promise cincoMil resolvida"), 5000)
 })
+const mil = () => new Promise((resolve, reject) =>{
+    setTimeout(() => reject("promise mil resolvida"), 1000)
+})
+
+const resolvedoraDePromisesAssincronas =  async()  => { 
+    await cincoMil().then((res) => {
+        console.log(res)
+    }).catch((err) =>console.log(err))
+    await mil().then((res) => {
+        console.log(res)
+    }).catch((err) =>console.log(err))
+}
+resolvedoraDePromisesAssincronas()
+/*
+const cincoMil = () => new Promise((resolve, reject) =>{
+    setTimeout(() => resolve("promise cincoMil resolvida"), 5000)
+})
+const mil = () => new Promise((resolve, reject) =>{
+    setTimeout(() => reject("promise mil resolvida"), 1000)
+})
+
+const resolvedoraDePromisesAssincronas =  async()  => { 
+    const resultado1 = await cincoMil().then((res) => {
+        console.log(res)
+        return res
+    }).catch((err) =>console.log(err))
+    const resultado2 = await mil().then((res) => {
+        console.log(res)
+    }).catch((err) =>console.log(err))
+    console.log(`Mensagem: ${resultado1}, ${resultado2},  ${resultado3}, ${resultado4} `)
+}
+resolvedoraDePromisesAssincronas()
+*/

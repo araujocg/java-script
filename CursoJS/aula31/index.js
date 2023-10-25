@@ -7,9 +7,9 @@ const umaPromessa = new Promise((resolve, reject) =>{
     }
 })
 console.log('esperando promise...')
-umaPromessa.then((resultado)=>{
+umaPromessa.then((resultado)=> {
     console.log(`Valor do then: ${resultado}`) // caso seja resolve*
-}).catch((erro)=>{
+}).catch((erro)=> {
     console.error(`Valor do catch: ${erro}`) // caso seja reject*
 }).finally(()=>{
     console.log(`Independente do resultado eu sempre estarei aqui`) // sempre vai aparecer independente do resultado
@@ -17,7 +17,7 @@ umaPromessa.then((resultado)=>{
 
 console.log('Isso vai acontecer antes da promise')
 
-///////////////////////////////////////
+/////////////////////////////////////////
 
 const promessa1 = new Promise((resolve, reject) =>{
     setTimeout(() =>{
