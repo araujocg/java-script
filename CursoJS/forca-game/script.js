@@ -7,10 +7,10 @@ const resposta = [
 
 let letterFound = new Set()
 let letterAlreadyClicked = []
-let erros = ''
-let respostaSorteada = ''
 let divr = []
 let divt = []
+let erros = ''
+let respostaSorteada = ''
 let rodando = false
 const imagemForca = document.getElementById('imagem-forca')
 
@@ -19,10 +19,6 @@ function iniciarJogo(){
     desistirJogo()
     const indiceAleatorio = Math.floor(Math.random() * resposta.length)
     respostaSorteada = resposta[indiceAleatorio]
-    letterAlreadyClicked.length = 0;
-    erros = 0
-    divr.length = 0;
-    divt.length = 0;
     for (let i = 1; i <= respostaSorteada.nome.length; i++) {
         divr.push(document.getElementById(`letra_resposta0${i}`));
     }
@@ -32,16 +28,13 @@ function iniciarJogo(){
     rodando = true
 }
 function desistirJogo(){
-    letterAlreadyClicked.length = 0
     erros = 0
     imagemForca.style.backgroundImage = `url(imagens/imagem-forca0${erros}.png)`
     divr.forEach(div => div.textContent = '')
+    divt.forEach(div => {div.style.color = '#000000', div.style.background = '#FFFFFF'})
     divr.length = 0
-    divt.forEach(div => {
-        div.style.color = '#000000'
-        div.style.background = '#FFFFFF'
-    })
     divr.length = 0
+    letterAlreadyClicked.length = 0
     rodando = false
 }
 
@@ -60,12 +53,11 @@ function forcaFunction(letra){
                 atualizarDivtERRO(letra) 
                 if (erros<5){
                     erros++
-                    console.log(erros)
                     imagemForca.style.backgroundImage = `url(imagens/imagem-forca0${erros}.png)`
                 } else{
                     imagemForca.style.backgroundImage = `url(imagens/imagem-forca0${6}.png)`
                     window.alert(`Que pena parece que você perdeu :( a palavra certa era "${respostaSorteada.nome}"`)
-                    desistirJogo()
+                    iniciarJogo()
                 }
             }
         } else {
@@ -77,11 +69,13 @@ function forcaFunction(letra){
 /////////////////////////////////////////
 
 function verificarVitoria() {
-    if (letterFound.size === respostaSorteada.nome.length) {
-        console.log('Parabéns, você venceu!');
-        desistirJogo()
+    if (letterFound.size === 5) {
+        console.log('Parabéns vc ganhou!!')
+        letterFound = new Set()
+        iniciarJogo()
     }
 }
+
 
 /////////////////////////////////////////
 
