@@ -1,6 +1,8 @@
 async function getPeople(){
     const response = await fetch('https://randomuser.me/api/?results=5')
-    return response.json()
+    const haha = await response.json()
+    console.log(haha)
+    return haha
 }
 ////////////////////////
 
