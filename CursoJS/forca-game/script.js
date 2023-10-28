@@ -11,12 +11,14 @@ let divr = []
 let divt = []
 let erros = ''
 let respostaSorteada = ''
+let chamadaAgendada = false
 let rodando = false
 const imagemForca = document.getElementById('imagem-forca')
 
 ////////////////////////////////////
 function iniciarJogo(){
     desistirJogo()
+    chamadaAgendada = false
     const indiceAleatorio = Math.floor(Math.random() * resposta.length)
     respostaSorteada = resposta[indiceAleatorio]
     for (let i = 1; i <= respostaSorteada.nome.length; i++) {
@@ -56,8 +58,11 @@ function forcaFunction(letra){
                     imagemForca.style.backgroundImage = `url(imagens/imagem-forca0${erros}.png)`
                 } else{
                     imagemForca.style.backgroundImage = `url(imagens/imagem-forca0${6}.png)`
-                    window.alert(`Que pena parece que você perdeu :( a palavra certa era "${respostaSorteada.nome}"`)
-                    iniciarJogo()
+                    rodando = false
+                    setTimeout(() =>{
+                        imagemForca.style.backgroundImage = `url(imagens/imagem-derrota.png)`
+                        imagemForca.style.backgroundPosition = 'center center'
+                    },1000)
                 }
             }
         } else {
@@ -69,10 +74,15 @@ function forcaFunction(letra){
 /////////////////////////////////////////
 
 function verificarVitoria() {
-    if (letterFound.size === 5) {
-        console.log('Parabéns vc ganhou!!')
+    if (letterFound.size === 5 && !chamadaAgendada) {
         letterFound = new Set()
-        iniciarJogo()
+        rodando = false
+        chamadaAgendada = true
+        imagemForca.style.backgroundImage = `url(imagens/imagem-vitoria.png)`
+        setTimeout(() =>{
+            iniciarJogo()
+        },3000)
+        
     }
 }
 
