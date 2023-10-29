@@ -1,3 +1,7 @@
+//Pegas as "respostas" de um banco de dados
+const response = fetch('https://www.ime.usp.br/~pf/dicios/br-sem-acentos.txt')
+console.log(response)
+
 const resposta = [
     {nome:"gelar"},
     {nome:"matar"},
@@ -65,8 +69,6 @@ function forcaFunction(letra){
                     },1000)
                 }
             }
-        } else {
-            window.alert('Esta letra já foi clicada.')
         }
     }
 }
@@ -139,6 +141,11 @@ function atualizarDivtERRO(letra) {
 }
 
 ///////////////////////////////////////////////
+document.addEventListener('keydown', function(event) {
+    if (/^[a-zA-Z]$/.test(event.key)) {
+        forcaFunction(event.key.toLowerCase())
+    }
+});
 
 
 
