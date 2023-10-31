@@ -77,7 +77,7 @@ function forcaFunction(letra){
 
 function verificarVitoria() {
     if (letterFound.size === 5 && !chamadaAgendada) {
-        letterFound = new Set()
+        letterFound.clear()
         rodando = false
         chamadaAgendada = true
         imagemForca.style.backgroundImage = `url(imagens/imagem-vitoria.png)`
