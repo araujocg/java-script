@@ -99,6 +99,8 @@ async function () // quando tem o async eu estou dizendo q a função q tem algu
 await // serve para o programar esperar concluir e ai ir pra proxima linha // Para utilizar o await é necessário q i await esteja dentro
 de uma function q usa o async
 
+trycatch // Serve para tratar o error
+
 
 	   
 
