@@ -1,6 +1,4 @@
 //Pegas as "respostas" de um banco de dados
-const response = fetch('https://www.ime.usp.br/~pf/dicios/br-sem-acentos.txt')
-console.log(response)
 
 const resposta = [
     {nome:"gelar"},
@@ -18,10 +16,12 @@ let respostaSorteada = ''
 let chamadaAgendada = false
 let rodando = false
 const imagemForca = document.getElementById('imagem-forca')
+const luz = document.getElementById('luz')
 
 ////////////////////////////////////
 function iniciarJogo(){
     desistirJogo()
+    luz.style.backgroundColor = "lightgreen"
     chamadaAgendada = false
     const indiceAleatorio = Math.floor(Math.random() * resposta.length)
     respostaSorteada = resposta[indiceAleatorio]
@@ -36,6 +36,7 @@ function iniciarJogo(){
 function desistirJogo(){
     erros = 0
     imagemForca.style.backgroundImage = `url(imagens/imagem-forca0${erros}.png)`
+    luz.style.backgroundColor = "red"
     divr.forEach(div => div.textContent = '')
     divt.forEach(div => {div.style.color = '#000000', div.style.background = '#FFFFFF'})
     divr.length = 0
