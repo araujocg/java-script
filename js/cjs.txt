@@ -101,6 +101,15 @@ de uma function q usa o async
 
 trycatch // Serve para tratar o error
 
+quando for passar um valor para o outro nunca faça assim {
+	obj = {a:2,b:3}
+	objCopy = obj
+} // pq toda mudança q vc fizer no objCopy vai passar para o obj tbm
+os jeitos certo seriam {
+	obj = {a:2,b:3}
+	objCopy = Object.assign(obj) // ou objCopy = {...obj}
+}
+
 
 	   
 
