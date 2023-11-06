@@ -63,6 +63,7 @@ function forcaFunction(letra){
                     imagemForca.style.backgroundImage = `url(imagens/imagem-forca0${erros}.png)`
                 } else{
                     imagemForca.style.backgroundImage = `url(imagens/imagem-forca0${6}.png)`
+                    luz.style.backgroundColor = "red"
                     rodando = false
                     setTimeout(() =>{
                         imagemForca.style.backgroundImage = `url(imagens/imagem-derrota.png)`
