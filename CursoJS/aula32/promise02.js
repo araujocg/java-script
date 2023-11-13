@@ -20,3 +20,16 @@ const resolvedoraDePromisesAssincronas =  async()  => { // quando tem o async eu
     console.log(`Mensagem: ${resultado1}, ${resultado2},  ${resultado3}, ${resultado4} `)
 }
 resolvedoraDePromisesAssincronas()
+
+//
+
+function setTimeoutAsync(timeout) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, timeout);
+    });
+  }
+  
+  // Waits for timeout - no error thrown
+  await setTimeoutAsync(3000);

@@ -1,4 +1,13 @@
 // Classes não são hoisted ou seja classes n são jogadas pra cima do codigo quando ele é carregado, então a gente n consegue chamar um classes sem antes ter passado
+class Jogo {
+    nome = "Minecraft";
+    color = "green"
+}
+const jogo = new Jogo()
+console.log(jogo)
+
+//
+
 class Carro {
     constructor(nome, ano){
         this.nome = nome

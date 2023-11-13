@@ -70,3 +70,18 @@ frontend1.saudacao()
 console.log(backend1)
 backend1.saudacao()
 */
+
+// campos e membros privados
+
+class Pessoa{
+    #primeiroNome = "Gabriel";
+    #sobreNome = "Jesus";
+    get nome(){
+        return `${this.#primeiroNome} ${this.#sobreNome}`;
+    }
+}
+const pessoa = new Pessoa();
+console.log(pessoa.nome);
+//console.log(pessoa.#primeiroNome); ERRO por n ser acessivel fora da classe Pessoa
+//console.log(pessoa.#sobreNome); ERRO 
+
