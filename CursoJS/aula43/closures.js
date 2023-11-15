@@ -29,7 +29,9 @@ function criarContadora(){
         console.log(contador);
     }
 }
-const contadora = criarContadora();
-contadora();
+let contadora = criarContadora()
+contadora(); // 1
+contadora(); // 2
+
 
 

@@ -110,6 +110,15 @@ os jeitos certo seriam {
 	objCopy = Object.assign(obj) // ou objCopy = {...obj}
 }
 
+Quando vc estiver executando uma função(ex.comer()) q tem outra função(ex.mastigar()) dentro dela não vai executar ou armazena o seu resultado
+Para ver a contagem incrementando, você precisa atribuir a função retornada(comer()) 
+a uma variável e então invocar essa função. {
+
+	let comeu = comer()
+	comeu()
+
+}
+
 
 	   
 
