@@ -118,6 +118,11 @@ a uma variável e então invocar essa função. {
 	comeu()
 
 }
+const objeto1 = {}
+Object.preventExtensions(objeto1) // N deixa vc criar novas propriedades, apenas isso (ex: objeto.a = 123 // ERRO)
+Object.Frezze(objeto1) // Deixa imutavel / vc n consegue mexer nele // Mas ele n é totalmente, ele é o mais perto q a gente consegue chegar com algo simples, caso esteja com duvida recomendo ver mais sobre
+Object.seal(objeto1) // Deixa apenas vc reatribuir, ou seja vc n consegue deletar uma propriedade / criar uma, Mas deixa vc mudar o valor de uma já existente
+
 
 
 	   

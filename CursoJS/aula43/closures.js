@@ -33,5 +33,17 @@ let contadora = criarContadora()
 contadora(); // 1
 contadora(); // 2
 
+//
+
+function soma(num1){
+    return (num2) =>{
+        if(!num2){
+            return num1;
+        }
+        return soma(num1 + num2);
+    }
+}
+console.log(soma(2)(3)(5)(10)(4)(-1)());
+
 
 
