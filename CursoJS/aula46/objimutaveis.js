@@ -1,34 +1,35 @@
 // PreventExtensions
-const obj1 = {a:1, b:2};
 
-Object.preventExtensions(obj1);
+    const obj1 = {a:1, b:2};
 
-delete obj1.b; // Funciona
-obj1.a = 10;  // funciona
-obj1.c = 3;  // Não funciona
+    Object.preventExtensions(obj1);
 
-console.log(obj1) // { a: 10 }
+    delete obj1.b; // Funciona
+    obj1.a = 10;  // funciona
+    obj1.c = 3;  // Não funciona
 
-// freeze
+    console.log(obj1) // { a: 10 }
 
-const obj2 = {a:1234};
+// freeze 
 
-Object.freeze(obj2);
+    const obj2 = {a:1234};
 
-obj2.a = 5678; // Não funciona
-obj2.b = 234; //Não funciona
-delete obj2; //Não funciona
+    Object.freeze(obj2);
 
-console.log(obj2); // { a: 1234 }
+    obj2.a = 5678; // Não funciona
+    obj2.b = 234; //Não funciona
+    delete obj2; //Não funciona
 
-//
+    console.log(obj2); // { a: 1234 }
 
-const obj3 = {a:1234};
+// seal
 
-Object.seal(obj3);
+    const obj3 = {a:1234};
 
-obj3.a = 5678; // funciona
-obj3.b = 234; // Não funciona
-delete obj3; //Não funciona
+    Object.seal(obj3);
 
-console.log(obj3); // { a: 5678 }
+    obj3.a = 5678; // funciona
+    obj3.b = 234; // Não funciona
+    delete obj3; //Não funciona
+
+    console.log(obj3); // { a: 5678 }
