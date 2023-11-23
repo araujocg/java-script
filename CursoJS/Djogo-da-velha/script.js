@@ -1,78 +1,77 @@
-// Resolver o problema q deixa clicar nos quadrados dps q o jogo ja era pra ter acabado
+// Criar um sistema pra quando der velha
 let dSquare = [];
 let squareAlreadyClicked = [];
 let vez = 0;
+let gamePaused = false;
 let vezX = document.getElementById('vez_X');
 let vezO = document.getElementById('vez_O');
-let conter = document.getElementById('container_principal')
 
 for (let i=1; i <= 9 ; i++){
     dSquare.push(document.getElementById(`quadrado0${i}`));
 }
 
 function game(pos){
-    if(!alreadyClicked(pos)){
-        squareAlreadyClicked.push(pos);
-        if (vez % 2 == 0){
-            trocaCor(pos, "X")
-            console.log(dSquare.length)
-            checkVictory("X")
-        } else {
-            trocaCor(pos, "O")
-            checkVictory("O")
+    if(!gamePaused){
+        if(!alreadyClicked(pos)){
+            squareAlreadyClicked.push(pos);
+            if (vez % 2 == 0){
+                trocaCor(pos, "X");
+                checkVictory("X");
+            } else {
+                trocaCor(pos, "O");
+                checkVictory("O");  
+            }
+            vez++;
+            checkVelha();
+            console.log(dSquare)
         }
-        vez++;
     }
 }
 
 function checkVictory(letter){
     for (let i = 0; i < 3; i++) {
         if (
-            dSquare[i * 3].textContent === letter &&
-            dSquare[i * 3 + 1].textContent === letter &&
-            dSquare[i * 3 + 2].textContent === letter
+            dSquare[i * 3].textContent === letter && dSquare[i * 3 + 1].textContent === letter && dSquare[i * 3 + 2].textContent === letter
         ) {
-            resetGame();
+            resetGame()
             return;
         }
     }
 
     for (let i = 0; i < 3; i++) {
         if (
-            dSquare[i].textContent === letter &&
-            dSquare[i + 3].textContent === letter &&
-            dSquare[i + 6].textContent === letter
+            dSquare[i].textContent === letter && dSquare[i + 3].textContent === letter && dSquare[i + 6].textContent === letter
         ) {
-            resetGame();
+            resetGame()
             return;
         }
     }
 
     if (
-        (dSquare[0].textContent === letter &&
-            dSquare[4].textContent === letter &&
-            dSquare[8].textContent === letter) ||
-        (dSquare[2].textContent === letter &&
-            dSquare[4].textContent === letter &&
-            dSquare[6].textContent === letter)
-    ) {
-        resetGame();
+        (dSquare[0].textContent === letter && dSquare[4].textContent === letter && dSquare[8].textContent === letter) ||
+        (dSquare[2].textContent === letter && dSquare[4].textContent === letter && dSquare[6].textContent === letter)
+    ){
+        resetGame()
         return;
     }
 
     function resetGame() {
-        let dSquare = [];
+        gamePaused = true;
         setTimeout(()=>{
-            for (let i=1; i <= 9 ; i++){
-                dSquare.push(document.getElementById(`quadrado0${i}`));
-            }
             squareAlreadyClicked = [];
             vez = 0;
             for (let i = 0; i < 9; i++) {
                 dSquare[i].textContent = '';
             }
+            //victory[letter]++;
+            gamePaused = false;
         },1000)
-    }
+    };
+
+}
+
+function checkVelha(){
+    
 }
 
 function alreadyClicked(pos){
