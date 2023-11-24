@@ -1,8 +1,12 @@
-// Criar um sistema pra quando der velha
+// Limpar esse codigo
 let dSquare = [];
 let squareAlreadyClicked = [];
 let vez = 0;
 let gamePaused = false;
+let vX = 0;
+let vO = 0;
+let victoryX = document.getElementById('victory-X')
+let victoryO = document.getElementById('victory-O')
 let vezX = document.getElementById('vez_X');
 let vezO = document.getElementById('vez_O');
 
@@ -23,7 +27,7 @@ function game(pos){
             }
             vez++;
             checkVelha();
-            console.log(dSquare)
+            console.log(squareAlreadyClicked)
         }
     }
 }
@@ -33,7 +37,7 @@ function checkVictory(letter){
         if (
             dSquare[i * 3].textContent === letter && dSquare[i * 3 + 1].textContent === letter && dSquare[i * 3 + 2].textContent === letter
         ) {
-            resetGame()
+            victory(letter);
             return;
         }
     }
@@ -42,7 +46,7 @@ function checkVictory(letter){
         if (
             dSquare[i].textContent === letter && dSquare[i + 3].textContent === letter && dSquare[i + 6].textContent === letter
         ) {
-            resetGame()
+            victory(letter);
             return;
         }
     }
@@ -51,28 +55,40 @@ function checkVictory(letter){
         (dSquare[0].textContent === letter && dSquare[4].textContent === letter && dSquare[8].textContent === letter) ||
         (dSquare[2].textContent === letter && dSquare[4].textContent === letter && dSquare[6].textContent === letter)
     ){
-        resetGame()
+        victory(letter);
         return;
     }
 
-    function resetGame() {
-        gamePaused = true;
-        setTimeout(()=>{
-            squareAlreadyClicked = [];
-            vez = 0;
-            for (let i = 0; i < 9; i++) {
-                dSquare[i].textContent = '';
-            }
-            //victory[letter]++;
-            gamePaused = false;
-        },1000)
-    };
-
+    function victory(letter){
+        if(letter == "X"){
+            vX++;
+            victoryX.textContent = vX;
+        } else{
+            vO++;
+            victoryO.textContent = vO;
+        }
+        resetGame()
+    }
 }
 
 function checkVelha(){
-    
+    if(squareAlreadyClicked.length == 9){
+        resetGame()
+    }
 }
+
+function resetGame() {
+    gamePaused = true;
+    setTimeout(()=>{
+        squareAlreadyClicked = [];
+        vez = 0;
+        for (let i = 0; i < 9; i++) {
+            dSquare[i].textContent = '';
+        }
+        //victory[letter]++;
+        gamePaused = false;
+    },1000)
+};
 
 function alreadyClicked(pos){
     return squareAlreadyClicked.includes(pos);

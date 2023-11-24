@@ -17,7 +17,7 @@ const doubleNumbers = numbers.map(doubleNumber)
 
 const doubleNumbers = numbers.map( num => num*2)
 
-console.log(doubleNumbers)
+console.log(doubleNumbers) // [ 2, 8, 10, 18, 28, 46 ]
 
 // Fahrenheit para Celsius usando .map()
 

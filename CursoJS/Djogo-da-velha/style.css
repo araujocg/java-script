@@ -8,6 +8,29 @@
     --color01:#61d4fa;
     --color02:#ffffff;
 }
+
+.victory-cont{
+    text-align: center;
+    width:300px;
+    height:300px;
+    padding-top: 65px;
+    font-size:10em;
+    border: 1px solid;
+    border-radius: 50%;
+    background-color:var(--color01);
+}
+#victory-X{
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+}
+#victory-O{
+    position: absolute;
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+}
 body{
     height:100vh;
     display:flex;
