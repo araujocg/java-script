@@ -13,33 +13,34 @@
     text-align: center;
     width:300px;
     height:300px;
-    padding-top: 65px;
+    padding-top: 45px;
     font-size:10em;
-    border: 1px solid;
+    color: var(--color01);
+    background-color:var(--color02);
+    border: 20px solid var(--color01);
     border-radius: 50%;
-    background-color:var(--color01);
 }
+
 #victory-X{
-    position: absolute;
-    top: 50%;
-    left: 20%;
-    transform: translate(-50%, -50%);
+    margin:0px 400px 0px 200px;
 }
 #victory-O{
-    position: absolute;
-    top: 50%;
-    left: 80%;
-    transform: translate(-50%, -50%);
+    margin:0px 200px 0px 400px;
 }
+
+
 body{
     height:100vh;
     display:flex;
-    justify-content:center;
     align-items:center;
     background-color: var(--color02);
 }
 
 #container_principal{ 
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     padding:30px 50px;
     height:700px;
     width:600px;

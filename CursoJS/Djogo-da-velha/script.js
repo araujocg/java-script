@@ -2,9 +2,9 @@
 let dSquare = [];
 let squareAlreadyClicked = [];
 let vez = 0;
-let gamePaused = false;
 let vX = 0;
 let vO = 0;
+let gamePaused = false;
 let victoryX = document.getElementById('victory-X')
 let victoryO = document.getElementById('victory-O')
 let vezX = document.getElementById('vez_X');
@@ -85,7 +85,6 @@ function resetGame() {
         for (let i = 0; i < 9; i++) {
             dSquare[i].textContent = '';
         }
-        //victory[letter]++;
         gamePaused = false;
     },1000)
 };
