@@ -84,6 +84,8 @@ retorno vai ser do PRIMEIRO elemento q satisfazer o test
 Usar .includes() Quando for preciso saber se um array/objeto possue determinado valor ou elemento
 // retorna sempre valor booleano
 
+Usar sort((a, b) => a - b) Quando você quiser organizar um array em ordem // de pra usar de varias outras maneiras
+
 console.table() // é um console.log normal mas retorna o conteudo em versão de tabela
 console.error() // é um console.log normal mas retorna o conteudo em vermelho representando erro
 
