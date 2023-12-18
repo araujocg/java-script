@@ -134,6 +134,10 @@ class Exemplo {
 }
 console.log(Exemplo.propriedadeEstatica); // "Isso é uma propriedade estática"
 
+Quando se trata de funções arrow no JavaScript, você pode usar () ou {} para retornar valores. Se você usar {}, 
+isso implica que o corpo da função tem várias linhas de código e precisa de instruções explícitas sobre o que retornar. 
+Se você usar (), está indicando que a função retornará uma expressão única.
+
 
 	   
 
