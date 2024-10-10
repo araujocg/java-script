@@ -4,7 +4,8 @@ const app = express();
 app.get("/", function (req, res) {
     // res.send("Problema do GET resolvido!")
     
-    res.sendFile(__dirname + "/html/index.html") // __dirname é a rota do arquivo 
+    res.sendFile(__dirname + "/html/index.html") // __dirname é a rota para o diretorio da aplicação no caso essa sendo o 04
+    // sendfile serve para mandar um arquivo
 });
 
 app.get("/sobre", function (req, res) {
