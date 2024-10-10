@@ -1,0 +1,26 @@
+mysql -h localhost -u root -p // iniciar o MySql
+SHOW DATABASES; // como já fala ele mostra os databases
+CREATE DATABASE nomeDoDatabase; // Cria um database
+USE nomeDoDatabase; // entra dentro do database
+SHOW TABLES; // mostra as tabelas
+
+CREATE TABLE NOMEDATABELA(
+    userName VARCHAR(50),
+    userEmail VARCHAR (100), // EXEMPLO de criação de uma tabela com as suas colunas
+    userAge INT
+); 
+
+DESCRIBE nomedatabela; // mostra as suas colunas e os seus tipos
+
+INSERT INTO nomedatabela(userName,userEmail,userAge) VALUES(
+    "Guilherme Araújo",
+    "Email@text.com", // Criação de uma linha em uma tabela 
+    23
+);
+ 
+SELECT * FROM nomedatabela; // Mostra a tabela
+
+WHERE // serve para fazer uma "pesquisa" na tabela ->
+SELECT * FROM users WHERE userAge = 47; 
+
+
