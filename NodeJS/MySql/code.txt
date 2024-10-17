@@ -23,4 +23,12 @@ SELECT * FROM nomedatabela; // Mostra a tabela
 WHERE // serve para fazer uma "pesquisa" na tabela ->
 SELECT * FROM users WHERE userAge = 47; 
 
+DELETE // obvious this delete a row and one table too ->
+DELETE FROM nomedatabela; // this will delete the entire table
+DELETE FROM nomedatabela WHERE (condition) // this will delete a row based on the condition
+
+
+UPDATE // obivous this update someone column in a row, but be careful this can update the entire column of the all rows
+UPDATE nomedatabela SET nomedacoluna = "Qualquer coisa"; // this will update the entire column of the all rows
+UPDATE nomedatabela SET nomedacoluna = "Qualquer coisa" WHERE (condition) // this will update the value
 
