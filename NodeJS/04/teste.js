@@ -12,14 +12,14 @@ const sequelize = new Sequelize('teste'/* Nome do Banco de dados*/, 'root', 'Dra
 //         console.log(`Erro ao se conectar: ${err}`);
 //     })
 
-const Posts = sequelize.define('posts',{
-    title: {
-        type: Sequelize.STRING,
-    },
-    content: {
-        type: Sequelize.TEXT
-    }
-})
+// const Posts = sequelize.define('posts',{
+//     title: {
+//         type: Sequelize.STRING,
+//     },
+//     content: {
+//         type: Sequelize.TEXT
+//     }
+// })
 
 // Posts.create({
 //     title: "CORALINE",
