@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
-const Sequelize = require('sequelize');
+const Post = require('./models/Post');
 
 
 // config
@@ -13,32 +13,23 @@ const Sequelize = require('sequelize');
     //body Parser
         app.use(bodyParser.urlencoded({extended: false}));
         app.use(bodyParser.json());
-
-    // Connection with database MySql
-        const sequelize = new Sequelize('teste', 'root', 'Drakie1amantedemusicas',{
-            host: "localhost",
-            dialect: "mysql"
-        });
-
-        const Posts = sequelize.define('posts',{
-            title: {
-                type: Sequelize.STRING,
-            },
-            content: {
-                type: Sequelize.TEXT
-            }
-        })
-
 // Routes
     app.get('/form', function(req,res){
         res.render('form');
     });
+    app.get('/', function(req,res){
+        res.render('home');
+    })
     app.post('/add', function(req,res){
         // res.send("Form has been sent");
         // res.send(`${req.body.title}`);
-        Posts.create({
+        Post.create({
             title: req.body.title,
             content: req.body.content 
+        }).then(() => {
+            res.redirect('/');
+        }).catch(err => {
+            res.send(`error on sent: ${err}`);
         })
     });
 
