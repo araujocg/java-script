@@ -7,8 +7,14 @@ const Post = require('./models/Post');
 
 // config
     // Template Engine
-        app.engine('handlebars', handlebars.engine({defaultLayout: 'main'}))
-        app.set('view engine', 'handlebars')
+        app.engine('handlebars', handlebars.engine({
+            defaultLayout: 'main',
+            runtimeOptions: {
+                allowProtoPropertiesByDefault: true,
+                allowProtoMethodsByDefault: true,
+            }
+        }))
+        app.set('view engine', 'handlebars');
 
     //body Parser
         app.use(bodyParser.urlencoded({extended: false}));
@@ -18,7 +24,9 @@ const Post = require('./models/Post');
         res.render('form');
     });
     app.get('/', function(req,res){
-        res.render('home');
+        Post.findAll().then((posts)=>{
+            res.render('home', {posts: posts});
+        })
     })
     app.post('/add', function(req,res){
         // res.send("Form has been sent");
