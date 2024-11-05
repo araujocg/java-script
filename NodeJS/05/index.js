@@ -25,6 +25,7 @@ const Post = require('./models/Post');
     });
     app.get('/', function(req,res){
         Post.findAll().then((posts)=>{
+            console.log(posts);
             res.render('home', {posts: posts});
         })
     })
