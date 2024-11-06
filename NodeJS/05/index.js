@@ -24,8 +24,7 @@ const Post = require('./models/Post');
         res.render('form');
     });
     app.get('/', function(req,res){
-        Post.findAll().then((posts)=>{
-            console.log(posts);
+        Post.findAll({order: [['id','DESC']]}).then((posts)=>{
             res.render('home', {posts: posts});
         })
     })
@@ -41,6 +40,13 @@ const Post = require('./models/Post');
             res.send(`error on sent: ${err}`);
         })
     });
+    app.get('/delete/:id', function(req,res){
+        Post.destroy({
+            where:{'id': req.params.id}
+        }).then(()=>{
+            console.log
+        })
+    })
 
 app.listen(8081, function(){
     console.log("Servidor Rodando!");
