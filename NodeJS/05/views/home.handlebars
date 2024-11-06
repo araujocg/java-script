@@ -3,5 +3,7 @@
 {{#each posts}}
     <h1>{{id}}.{{title}}</h1>
     <p>{{content}}</p>
-    <button>delete</button>
+    <a href="/delete/{{id}}">
+        <button>delete</button>
+    </a>
 {{/each}}

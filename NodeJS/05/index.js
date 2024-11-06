@@ -44,7 +44,10 @@ const Post = require('./models/Post');
         Post.destroy({
             where:{'id': req.params.id}
         }).then(()=>{
-            console.log
+            // res.send("The post has been deleted!");
+            res.redirect('/');
+        }).catch((err) => {
+            res.send(`ERROR: ${err}`);
         })
     })
 
