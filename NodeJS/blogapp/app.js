@@ -2,6 +2,7 @@ const express = require("express");
 const handlebars = require("express-handlebars");
 const bodyParser = require("body-parser");
 const admin = require("./routes/admin");
+const path = require("path");
 
 const app = express();
 
@@ -21,6 +22,9 @@ const app = express();
 
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
+
+//  Public
+    app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
 
