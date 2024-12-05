@@ -26,4 +26,17 @@ const CreateNewCategory = async(name, slug) => {
     }
 }
 
+// const newCategory = new Category({
+//     name: name,
+//     slug: slug
+// });
+
+// new Category(newCategory).save().then(()=>{
+//     console.log("Categoria criada com sucesso:", result); // poderia até ter feito dessa forma mas a outra parece mais recomendavel 
+// }).catch((err)  => {
+//     console.error("ERRO "+ err);
+// })
+
+
+
 module.exports = CreateNewCategory;
