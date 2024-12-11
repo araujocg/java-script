@@ -22,7 +22,7 @@ const CreateNewCategory = async(name, slug) => {
 
     }catch(err){
         console.error("Erro ao criar categoria:", err.message);
-        throw err; // Lança o erro para ser tratado na chamada
+        throw err; // /Lança o erro para ser tratado na chamada
     }
 }
 
