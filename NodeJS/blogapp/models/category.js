@@ -17,7 +17,7 @@ const CreateNewCategory = async(name, slug) => {
             slug: slug
         });
         const result = await newCategory.save();
-        console.log("Categoria criada com sucesso:", result);
+        console.log("Categoria criada com sucesso:", result); // resolver o negócio de quando é null
         return result; // Retorna a categoria salva
 
     }catch(err){

@@ -20,7 +20,26 @@ router.get('/category/add', (req, res) =>{
 });
 
 router.post('/category/new', (req, res)=>{
+
+    const error = [];
+    if(!req.body.name || typeof req.body.name == undefined || req.body.name == NULL){
+        error.push({text: "Name invalid"});
+    }
+
+    if(!req.body.slug || typeof req.body.slug == undefined || req.body.slug == NULL){
+        error.push({text: "Slug invalid"});
+    }
+
+    if(req.body.name.length < 2 ){
+        error.push({text: "Very small name"});
+    }
+
+    if(error.length == 0){
+        res.render("admin/addcategory", {error: error});
+    }
+
     CreateNewCategory(req.body.name, req.body.slug);
+    // console.log(error);
 });
 
 module.exports = router;
