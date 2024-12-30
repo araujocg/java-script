@@ -44,7 +44,7 @@ const app = express();
     mongoose.connect("mongodb://localhost/blogapp").then(() => {
         console.log("Connect!");
     }).catch((err) => {
-        console.log("ERRO: " + err);
+        console.log("ERRO on app.js 47: " + err);
     })
 
 // bodyParser

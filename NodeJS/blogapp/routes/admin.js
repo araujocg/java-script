@@ -22,11 +22,11 @@ router.get('/category/add', (req, res) =>{
 router.post('/category/new', (req, res)=>{
 
     const error = [];
-    if(!req.body.name || typeof req.body.name == undefined || req.body.name == NULL){
+    if(!req.body.name || typeof req.body.name == undefined || req.body.name == null){
         error.push({text: "Name invalid"});
     }
 
-    if(!req.body.slug || typeof req.body.slug == undefined || req.body.slug == NULL){
+    if(!req.body.slug || typeof req.body.slug == undefined || req.body.slug == null){
         error.push({text: "Slug invalid"});
     }
 
