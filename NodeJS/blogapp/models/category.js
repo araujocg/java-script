@@ -38,7 +38,7 @@ const CreateNewCategory = async(name, slug) => {
 
 // const newCategory = new Category({
 //     name: name,
-//     slug: slug
+//     slug: slug,
 // });
 
 // new Category(newCategory).save().then(()=>{
