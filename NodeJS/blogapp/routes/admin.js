@@ -19,7 +19,7 @@ router.get('/category/add', (req, res) =>{
     res.render("admin/addcategory");
 });
 
-router.post('/category/new', (req, res)=>{
+router.post('/category/new', async(req, res)=>{
 
     const error = [];
     if(!req.body.name || typeof req.body.name == undefined || req.body.name == null){
@@ -34,11 +34,11 @@ router.post('/category/new', (req, res)=>{
         error.push({text: "Very small name"});
     }
 
-    if(error.length == 0){
+    if(error.length !== 0){
         res.render("admin/addcategory", {error: error});
+    } else{
+        CreateNewCategory(req.body.name, req.body.slug);
     }
-
-    CreateNewCategory(req.body.name, req.body.slug);
     // console.log(error);
 });
 

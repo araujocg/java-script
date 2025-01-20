@@ -21,6 +21,7 @@ const CreateNewCategory = async(name, slug) => {
     // }).catch((err)  => {
     //     console.error("ERRO category 22/ "+ err);
     // })
+    
     try{
         const newCategory = new Category({
             name: name,
