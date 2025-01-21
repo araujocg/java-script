@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require("mongoose");
 const CreateNewCategory = require("../models/category");
+const { redirect } = require('react-router-dom');
 
 router.get('/', (req, res) => {
     res.render("admin/index");
@@ -34,12 +35,11 @@ router.post('/category/new', async(req, res)=>{
         error.push({text: "Very small name"});
     }
 
-    if(error.length !== 0){
+    if(error.length > 0){
         res.render("admin/addcategory", {error: error});
-    } else{
-        CreateNewCategory(req.body.name, req.body.slug);
-    }
-    // console.log(error);
+    } 
+    
+    CreateNewCategory(req.body.name, req.body.slug).then(res.redirect("admin/category")); // já sabe 
 });
 
 module.exports = router;

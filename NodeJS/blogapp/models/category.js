@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { redirect } = require("react-router-dom");
 
 const categorySchema = mongoose.Schema({
     name: { type: String, required: true },
@@ -29,7 +30,8 @@ const CreateNewCategory = async(name, slug) => {
         });
         const result = await newCategory.save();
         console.log("Categoria criada com sucesso:", result); // resolver o negócio de quando é null
-        return result; // Retorna a categoria salva
+
+        return redirect
 
     }catch(err){
         console.error("Erro ao criar categoria:", err.message);
