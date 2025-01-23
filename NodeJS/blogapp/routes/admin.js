@@ -39,7 +39,7 @@ router.post('/category/new', async(req, res)=>{
         res.render("admin/addcategory", {error: error});
     } 
     
-    CreateNewCategory(req.body.name, req.body.slug).then(res.redirect("admin/category")); // já sabe 
+    CreateNewCategory(req.body.name, req.body.slug).then(res.redirect("../category")).catch(console.log("ERRO 42")) /////////////////////////
 });
 
 module.exports = router;
