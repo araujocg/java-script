@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const CreateNewCategory = require("../models/category");
 const { redirect } = require('react-router-dom');
 
+const Category = mongoose.model('category');
+
 router.get('/', (req, res) => {
     res.render("admin/index");
 });
@@ -13,7 +15,9 @@ router.get('/posts', (req, res) => {
 });
 
 router.get('/category', (req, res) => {
-    res.render("admin/category");
+    Category.find().then((categories) =>{
+        res.render("admin/category", {categories: categories});
+    })
 });
 
 router.get('/category/add', (req, res) =>{
@@ -37,10 +41,19 @@ router.post('/category/new', async(req, res)=>{
 
     if(error.length > 0){
         res.render("admin/addcategory", {error: error});
-    } 
+    } else {
+        CreateNewCategory(req.body.name, req.body.slug)
+            .then(() => {
+                req.flash("success_msg", "Categoria criada com sucesso!");
+                res.redirect("../category");
+            })
+            .catch((err) => {
+                req.flash("error_msg", "Houve um erro ao salvar a categoria, tente novamente!");
+                res.redirect("/admin");
+                console.log(`ERROR LINE 42: ${err}`);
+            })
+    }
     
-    CreateNewCategory(req.body.name, req.body.slug).then(res.redirect("../category"))
-        .catch((err) => console.log(`ERROR: ${err}`)); /////////////////////////
 });
 
 module.exports = router;

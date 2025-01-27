@@ -28,11 +28,10 @@ const CreateNewCategory = async(name, slug) => {
             name: name,
             slug: slug
         });
+        // Category.find().then((cat) => console.log(cat))
         const result = await newCategory.save();
-        return console.log("Categoria criada com sucesso:", result);
 
     }catch(err){
-        console.error("Erro ao criar categoria:", err.message);
         throw err; // /Lança o erro para ser tratado na chamada
     }
 }
