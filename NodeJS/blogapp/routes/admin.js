@@ -15,7 +15,7 @@ router.get('/posts', (req, res) => {
 });
 
 router.get('/category', (req, res) => {
-    Category.find().then((categories) =>{
+    Category.find().sort({date:'desc'}).then((categories) =>{
         res.render("admin/category", {categories: categories});
     })
 });
@@ -53,7 +53,10 @@ router.post('/category/new', async(req, res)=>{
                 console.log(`ERROR LINE 42: ${err}`);
             })
     }
-    
+});
+
+router.get("/category/edit/:id", (req,res) => {
+    res.render('admin/editcategory', {id: req.body.id}); //
 });
 
 module.exports = router;
