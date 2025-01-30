@@ -7,11 +7,9 @@ const categorySchema = mongoose.Schema({
     date: { type: Date, default: Date.now() }
 });
 
-mongoose.model('category', categorySchema);
+const Category = mongoose.model('category', categorySchema);
 
-const Category = mongoose.model('category');
-
-const CreateNewCategory = async(name, slug) => {
+const createNewCategory = async(name, slug) => {
     // const newCategory = new Category({
     //     name: name,
     //     slug: slug
@@ -36,17 +34,19 @@ const CreateNewCategory = async(name, slug) => {
     }
 }
 
-// const newCategory = new Category({
-//     name: name,
-//     slug: slug,
-// });
+const editCategory = async(id, name, slug) =>{
+    try{
+        const updateCategory = await Category.findByIdAndUpdate(
+            id, 
+            {$set: {name: name, slug: slug}},
+            { new: true }
+        );
+        console.log("Categoria Atualizada!")
+    }catch(err){
+        throw err;
+    }
+}
 
-// new Category(newCategory).save().then(()=>{
-//     console.log("Categoria criada com sucesso:", result); // poderia até ter feito dessa forma mas a outra parece mais recomendavel 
-// }).catch((err)  => {
-//     console.error("ERRO "+ err);
-// })
 
 
-
-module.exports = CreateNewCategory;
+module.exports = {createNewCategory, editCategory};

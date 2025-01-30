@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require("mongoose");
-const CreateNewCategory = require("../models/category");
+const {createNewCategory, editCategory} = require("../models/category");
 const { redirect } = require('react-router-dom');
 
 const Category = mongoose.model('category');
@@ -42,7 +42,7 @@ router.post('/category/new', async(req, res)=>{
     if(error.length > 0){
         res.render("admin/addcategory", {error: error});
     } else {
-        CreateNewCategory(req.body.name, req.body.slug)
+        createNewCategory(req.body.name, req.body.slug)
             .then(() => {
                 req.flash("success_msg", "Categoria criada com sucesso!");
                 res.redirect("../category");
@@ -56,7 +56,19 @@ router.post('/category/new', async(req, res)=>{
 });
 
 router.get("/category/edit/:id", (req,res) => {
-    res.render('admin/editcategory', {id: req.body.id}); //
+    res.render('admin/editcategory', {id: req.params.id}); //
+});
+router.post("/category/newedit", (req,res) =>{
+    editCategory(req.body.id, req.body.name, req.body.slug)
+        .then(() => {
+            req.flash("success_msg", "Categoria editada com sucesso!");
+            res.redirect("../category");
+        })
+        .catch((err) => {
+            req.flash("error_msg", "Houve um erro ao editar a categoria, tente novamente!");
+            res.redirect("/admin");
+            console.log(`ERROR LINE 42: ${err}`);
+        })
 });
 
 module.exports = router;
