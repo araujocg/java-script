@@ -3,11 +3,11 @@
     <div class="card-body">
         <form action="/admin/category/newedit" method="post">
             <label for="id">Id:</label>
-            <input type="text" name="id" id="id" readonly class="form-control" value="{{id}}">
+            <input type="text" name="id" id="id" class="form-control" readonly value="{{id}}">
             <label for="name">Nome:</label>
-            <input type="text" name="name" id="name" placeholder="Nome da Categoria" class="form-control">
+            <input type="text" name="name" id="name" placeholder="Nome da Categoria" class="form-control" value="{{name}}">
             <label for="Slug">Slug: </label>
-            <input type="text" name="slug" id="slug" placeholder="Slug da Categoria" class="form-control">
+            <input type="text" name="slug" id="slug" placeholder="Slug da Categoria" class="form-control" value="{{slug}}">
             <br>
             <button type="submit" class="btn btn-success">Editar a Categoria</button>
         </form>

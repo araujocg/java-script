@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require("mongoose");
-const {createNewCategory, editCategory} = require("../models/category");
+const { createNewCategory, editCategory } = require("../models/category");
 const { redirect } = require('react-router-dom');
 
 const Category = mongoose.model('category');
@@ -15,32 +15,32 @@ router.get('/posts', (req, res) => {
 });
 
 router.get('/category', (req, res) => {
-    Category.find().sort({date:'desc'}).then((categories) =>{
-        res.render("admin/category", {categories: categories});
+    Category.find().sort({ date: 'desc' }).then((categories) => {
+        res.render("admin/category", { categories: categories });
     })
 });
 
-router.get('/category/add', (req, res) =>{
+router.get('/category/add', (req, res) => {
     res.render("admin/addcategory");
 });
 
-router.post('/category/new', async(req, res)=>{
+router.post('/category/new', async (req, res) => {
 
     const error = [];
-    if(!req.body.name || typeof req.body.name == undefined || req.body.name == null){
-        error.push({text: "Name invalid"});
+    if (!req.body.name || typeof req.body.name == undefined || req.body.name == null) {
+        error.push({ text: "Name invalid" });
     }
 
-    if(!req.body.slug || typeof req.body.slug == undefined || req.body.slug == null){
-        error.push({text: "Slug invalid"});
+    if (!req.body.slug || typeof req.body.slug == undefined || req.body.slug == null) {
+        error.push({ text: "Slug invalid" });
     }
 
-    if(req.body.name.length < 2 ){
-        error.push({text: "Very small name"});
+    if (req.body.name.length < 2) {
+        error.push({ text: "Very small name" });
     }
 
-    if(error.length > 0){
-        res.render("admin/addcategory", {error: error});
+    if (error.length > 0) {
+        res.render("admin/addcategory", { error: error });
     } else {
         createNewCategory(req.body.name, req.body.slug)
             .then(() => {
@@ -55,10 +55,20 @@ router.post('/category/new', async(req, res)=>{
     }
 });
 
-router.get("/category/edit/:id", (req,res) => {
-    res.render('admin/editcategory', {id: req.params.id}); //
+router.get("/category/edit/:id", async (req, res) => {
+    try {
+        const category = await Category.findOne({ _id: req.params.id });
+
+        res.render('admin/editcategory', {
+            id: category._id,
+            name: category.name,
+            slug: category.slug
+        });
+    } catch(err){
+        console.log("ERRO" + err);
+    }
 });
-router.post("/category/newedit", (req,res) =>{
+router.post("/category/newedit", (req, res) => {
     editCategory(req.body.id, req.body.name, req.body.slug)
         .then(() => {
             req.flash("success_msg", "Categoria editada com sucesso!");
