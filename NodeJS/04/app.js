@@ -23,6 +23,6 @@ app.get("/ola/:nome/:cor", function(req,res){ // Quando colocar um parametro é 
     res.send(`<h1>Olá ${req.params.nome}, Seja Bem Vindo! </h1> <h2 style="color:blue">Sua cor favorita é ${req.params.cor}</h2>`);
 })
 
-app.listen(8081, function () { // sempre a ultima linha de código
-    console.log("Servidor rodando normalmente!")
+app.listen(3000, '0.0.0.0', () => { // sempre a ultima linha de código
+    console.log("Servidor rodando normalmente!");
 }); 
