@@ -81,4 +81,32 @@ router.post("/category/newedit", (req, res) => {
         })
 });
 
+// router.get("category/delete/:id", async (req,res) => {
+//     try{
+//         await Category.deleteOne({ _id: req.params.id})
+//             .then(()=> {
+//                 req.flash("success_msg", "Categoria deletada com sucesso!");
+//                 res.redirect("../category");
+//             })
+//             .catch((err) => {
+//                 req.flash("error_msg", "Houve um erro ao deletar a categoria, tente novamente!");
+//                 res.redirect("../category");
+//             })
+//     }catch(err){
+//         req.flash("error_msg", "Houve um erro ao deletar a categoria, tente novamente!");
+//         res.redirect("../category");
+//     }
+// })
+
+router.get("/category/delete/:id", async (req, res) => {
+    try {
+        await Category.deleteOne({ _id: req.params.id });
+        req.flash("success_msg", "Categoria deletada com sucesso!");
+        res.redirect("/admin/category"); 
+    } catch (err) {
+        req.flash("error_msg", "Houve um erro ao deletar a categoria, tente novamente!");
+        res.redirect("/admin");
+    }
+});
+
 module.exports = router;
