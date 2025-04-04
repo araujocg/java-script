@@ -2,16 +2,21 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require("mongoose");
 const { createNewCategory, editCategory } = require("../models/category");
+require("../models/post");
 const { redirect } = require('react-router-dom');
 
 const Category = mongoose.model('category');
+const Post = mongoose.model('post');
 
 router.get('/', (req, res) => {
     res.render("admin/index");
 });
 
-router.get('/posts', (req, res) => {
-    res.send("Posts Page!");
+router.get("/post", (req,res) => {
+    // Post.find().sort({date: 'desc'}).then((posts) => {
+    //     res.render("admin/post", {posts: posts});
+    // })
+    res.render("admin/post");
 });
 
 router.get('/category', (req, res) => {
@@ -22,6 +27,10 @@ router.get('/category', (req, res) => {
 
 router.get('/category/add', (req, res) => {
     res.render("admin/addcategory");
+});
+
+router.get("/post/add", (req,res) => {
+    res.render("admin/addpost");
 });
 
 router.post('/category/new', async (req, res) => {

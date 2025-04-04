@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { redirect } = require("react-router-dom");
 
 const categorySchema = mongoose.Schema({
     name: { type: String, required: true },
@@ -46,7 +45,5 @@ const editCategory = async(id, name, slug) =>{
         throw err;
     }
 }
-
-
 
 module.exports = {createNewCategory, editCategory};
