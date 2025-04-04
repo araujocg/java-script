@@ -8,15 +8,22 @@
     <div class="card-body">
         <form action="/admin/post/new" method="post">
             <label for="name">Nome:</label>
-            <input type="text" name="name" id="name" placeholder="Nome da Postagem" class="form-control">
+            <input type="text" name="name" id="name" placeholder="Nome da Postagem" class="form-control my-2">
             <label for="Slug">Slug: </label>
-            <input type="text" name="slug" id="slug" placeholder="Slug da Postagem" class="form-control">
+            <input type="text" name="slug" id="slug" placeholder="Slug da Postagem" class="form-control my-2">
             <label for="description">Descrição: </label>
-            <input type="text" name="description" id="description" placeholder="Descrição da postagem">
+            <input type="text" name="description" id="description" placeholder="Descrição da postagem" class="form-control my-2">
             <label for="content">Conteúdo: </label>
-            <textarea name="content" ></textarea>
-            <br>
-            <button type="submit" class="btn btn-success">Criar a Postagem</button>
+            <textarea name="content" class="form-control my-2"></textarea >
+            <label for="category">Categoria: </label>
+            <select name="category" class="form-select my-2">
+                {{#each categories}}
+                    <option value="{{_id}}">{{name}}</option>
+                {{else}}
+                    <option value="">Nenhuma categoria registrada</option>
+                {{/each}}
+            </select>
+            <button type="submit" class="btn btn-success mt-2">Criar a Postagem</button>
         </form>
     </div>
 </div>

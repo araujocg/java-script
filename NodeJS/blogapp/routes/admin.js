@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     res.render("admin/index");
 });
 
-router.get("/post", (req,res) => {
+router.get('/post', (req,res) => {
     // Post.find().sort({date: 'desc'}).then((posts) => {
     //     res.render("admin/post", {posts: posts});
     // })
@@ -30,7 +30,9 @@ router.get('/category/add', (req, res) => {
 });
 
 router.get("/post/add", (req,res) => {
-    res.render("admin/addpost");
+    Category.find().sort({ date: 'desc' }).then((categories) => {
+        res.render("admin/addpost", { categories: categories });
+    })
 });
 
 router.post('/category/new', async (req, res) => {
