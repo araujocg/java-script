@@ -6,7 +6,7 @@ const postSchema = mongoose.Schema({
     slug: { type: String, required: true },
     description: { type: String, required: true},
     content: { type: String, required: true},
-    category: { type: Schema.Types.ObjectId, ref: "category", required: true },
+    category: { type: Schema.Types.ObjectId, ref: "category", required: false },
     date: { type: Date, default: Date.now }
 });
 
@@ -18,8 +18,8 @@ const createNewPost = async(title, slug, description, content, category) => {
             title: title,
             slug: slug,
             description: description,
-            ontent: content,
-            category: category
+            content: content,
+            // category: category
         });
 
         const result = await newPost.save();

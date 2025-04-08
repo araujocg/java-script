@@ -23,7 +23,9 @@ router.get('/post', (req, res) => {
     // Post.find().sort({date: 'desc'}).then((posts) => {
     //     res.render("admin/post", {posts: posts});
     // })
-    res.render("admin/post");
+    Post.find().sort({ date: 'desc'}).then((posts) =>{
+        res.render("admin/post", {posts: posts});
+    })
 });
 
 router.get('/category/add', (req, res) => {
@@ -68,10 +70,10 @@ router.post('/category/new', async (req, res) => {
 });
 
 router.post('/post/new', async (req, res) => {
-    createNewPost(req.body.title, req.body.slug, req.body, req.body.description, req.body.content, req.body.category)
+    createNewPost(req.body.title, req.body.slug, req.body.description, req.body.content, req.body.category)
         .then(() => {
             req.flash("success_msg", "Categoria criada com sucesso!");
-            res.redirect("../category");
+            res.redirect("../post");
         })
         .catch((err) => {
             req.flash("error_msg", "Houve um erro ao salvar a categoria, tente novamente!");
