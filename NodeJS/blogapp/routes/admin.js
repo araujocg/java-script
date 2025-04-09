@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require("mongoose");
 const { createNewCategory, editCategory } = require("../models/category");
-const { createNewPost } = require("../models/post")
+const { createNewPost, editPost } = require("../models/post")
 require("../models/post");
 const { redirect } = require('react-router-dom');
 
@@ -108,6 +108,35 @@ router.post("/category/newedit", (req, res) => {
         })
 });
 
+router.get("/post/edit/:id", async (req, res) => {
+    try {
+        const post = await Post.findOne({ _id: req.params.id });
+
+        res.render('admin/editpost', {
+            id: post._id,
+            title: post.title,
+            slug: post.slug,
+            description: post.description,
+            content: post.content,
+            // category: post.category
+        });
+    } catch (err) {
+        console.log("ERRO" + err);
+    }
+});
+router.post("/post/newedit", (req, res) => {
+    editPost(req.body.id, req.body.title, req.body.slug, req.body.description, req.body.content, /*req.body.category*/)
+        .then(() => {
+            req.flash("success_msg", "Postagem editada com sucesso!");
+            res.redirect("../post");
+        })
+        .catch((err) => {
+            req.flash("error_msg", "Houve um erro ao editar a Postagem, tente novamente!");
+            res.redirect("/admin");
+            console.log(`ERROR LINE 42: ${err}`);
+        })
+});
+
 // router.get("category/delete/:id", async (req,res) => {
 //     try{
 //         await Category.deleteOne({ _id: req.params.id})
@@ -124,6 +153,17 @@ router.post("/category/newedit", (req, res) => {
 //         res.redirect("../category");
 //     }
 // })
+
+router.get("/post/delete/:id", async (req, res) => {
+    try {
+        await Post.deleteOne({ _id: req.params.id });
+        req.flash("success_msg", "Post deletado com sucesso!");
+        res.redirect("/admin/post");
+    } catch(err){
+        req.flash("error_msg", "Houve um erro ao deletar o post, tente novamente!");
+        res.redirect("/admin");
+    }
+});
 
 router.get("/category/delete/:id", async (req, res) => {
     try {

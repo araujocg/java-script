@@ -1,0 +1,21 @@
+<h3>Edit</h3>
+<div class="card">
+    <div class="card-body">
+        <form action="/admin/post/newedit" method="post">
+            <label for="id">Id:</label>
+            <input type="text" name="id" id="id" class="form-control" readonly value="{{id}}">
+            <label for="name">Título:</label>
+            <input type="text" name="title" id="title" placeholder="Título da Postagem" class="form-control" value="{{title}}">
+            <label for="Slug">Slug: </label>
+            <input type="text" name="slug" id="slug" placeholder="Slug da Postagem" class="form-control" value="{{slug}}">
+            <label for="Slug">Descrição: </label>
+            <input type="text" name="description" id="description" placeholder="Descrição da Postagem" class="form-control" value="{{description}}">
+            <label for="Slug">Conteúdo: </label>
+            <input type="text" name="content" id="content" placeholder="Conteúdo da Postagem" class="form-control" value="{{content}}">
+            {{!-- <label for="Slug">Categoria: </label>
+            <input type="text" name="category" id="category" placeholder="Categoria da Postagem" class="form-control" value="{{category}}"> --}}
+            <br>
+            <button type="submit" class="btn btn-success">Editar a Postagem</button>
+        </form>
+    </div>
+</div>

@@ -29,5 +29,23 @@ const createNewPost = async(title, slug, description, content, category) => {
     }
 }
 
-module.exports = {createNewPost};
+const editPost = async(id, title, slug, description, content, category) =>{
+    try{
+        const updatePost = await Post.findByIdAndUpdate(
+            id, 
+            {$set: {
+                title: title,
+                slug: slug,
+                description: description,
+                content: content,
+            }},
+            { new: true }
+        );
+        console.log("Postagem Atualizada!")
+    }catch(err){
+        throw err;
+    }
+}
+
+module.exports = {createNewPost, editPost};
 
