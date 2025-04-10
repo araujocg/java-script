@@ -23,8 +23,8 @@ router.get('/post', (req, res) => {
     // Post.find().sort({date: 'desc'}).then((posts) => {
     //     res.render("admin/post", {posts: posts});
     // })
-    Post.find().sort({ date: 'desc'}).then((posts) =>{
-        res.render("admin/post", {posts: posts});
+    Post.find().sort({ date: 'desc' }).then((posts) => {
+        res.render("admin/post", { posts: posts });
     })
 });
 
@@ -70,16 +70,28 @@ router.post('/category/new', async (req, res) => {
 });
 
 router.post('/post/new', async (req, res) => {
-    createNewPost(req.body.title, req.body.slug, req.body.description, req.body.content, req.body.category)
-        .then(() => {
-            req.flash("success_msg", "Categoria criada com sucesso!");
-            res.redirect("../post");
-        })
-        .catch((err) => {
-            req.flash("error_msg", "Houve um erro ao salvar a categoria, tente novamente!");
-            res.redirect("/admin");
-            console.log(`ERROR LINE 42: ${err}`);
-        })
+    const error = [];
+    if (!req.body.title || typeof req.body.title == undefined || req.body.title == null) {
+        error.push({ text: "Título invalido" });
+    }
+
+    if (!req.body.slug || typeof req.body.slug == undefined || req.body.slug == null) {
+        error.push({ text: "Slug invalido" });
+    }
+
+    if (error.length > 0) {
+        res.render("admin/addpost", { error: error });
+    } else {
+        createNewPost(req.body.title, req.body.slug, req.body.description, req.body.content, req.body.category)
+            .then(() => {
+                req.flash("success_msg", "Postagem criada com sucesso!");
+                res.redirect("../post");
+            })
+            .catch((err) => {
+                req.flash("error_msg", "Houve um erro ao salvar a postagem, tente novamente!");
+                res.redirect("/admin");
+            })
+    }
 })
 
 router.get("/category/edit/:id", async (req, res) => {
@@ -159,7 +171,7 @@ router.get("/post/delete/:id", async (req, res) => {
         await Post.deleteOne({ _id: req.params.id });
         req.flash("success_msg", "Post deletado com sucesso!");
         res.redirect("/admin/post");
-    } catch(err){
+    } catch (err) {
         req.flash("error_msg", "Houve um erro ao deletar o post, tente novamente!");
         res.redirect("/admin");
     }
