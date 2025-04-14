@@ -31,6 +31,11 @@ const app = express();
 
     app.engine('handlebars', handlebars.engine({
         defaultLayout: 'main',
+        helpers: {
+            eq: function (a, b) {
+                return String(a) === String(b);
+            }
+        },
         runtimeOptions: {
             allowProtoPropertiesByDefault: true,
             allowProtoMethodsByDefault: true

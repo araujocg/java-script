@@ -12,8 +12,14 @@
             <input type="text" name="description" id="description" placeholder="Descrição da Postagem" class="form-control" value="{{description}}">
             <label for="Slug">Conteúdo: </label>
             <input type="text" name="content" id="content" placeholder="Conteúdo da Postagem" class="form-control" value="{{content}}">
-            {{!-- <label for="Slug">Categoria: </label>
-            <input type="text" name="category" id="category" placeholder="Categoria da Postagem" class="form-control" value="{{category}}"> --}}
+            <label for="Slug">Categoria: </label>
+            <select name="category" class="form-select my-2">
+                {{#each categories}}
+                    <option value="{{_id}}"{{#if (eq _id ../categorySelected._id)}}selected{{/if}}>{{name}}</option>
+                {{else}}
+                    <option value="">Nenhuma categoria registrada</option>
+                {{/each}}
+            </select>
             <br>
             <button type="submit" class="btn btn-success">Editar a Postagem</button>
         </form>

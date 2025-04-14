@@ -23,7 +23,7 @@ router.get('/post', (req, res) => {
     // Post.find().sort({date: 'desc'}).then((posts) => {
     //     res.render("admin/post", {posts: posts});
     // })
-    Post.find().sort({ date: 'desc' }).then((posts) => {
+    Post.find().populate("category").sort({ date: 'desc' }).then((posts) => {
         res.render("admin/post", { posts: posts });
     })
 });
@@ -122,22 +122,26 @@ router.post("/category/newedit", (req, res) => {
 
 router.get("/post/edit/:id", async (req, res) => {
     try {
-        const post = await Post.findOne({ _id: req.params.id });
+        const post = await Post.findOne({ _id: req.params.id }).populate("category");
 
-        res.render('admin/editpost', {
-            id: post._id,
-            title: post.title,
-            slug: post.slug,
-            description: post.description,
-            content: post.content,
-            // category: post.category
-        });
+        Category.find().sort({ date: 'desc' }).then((categories) => {
+            res.render('admin/editpost', {
+                id: post._id,
+                title: post.title,
+                slug: post.slug,
+                description: post.description,
+                content: post.content,
+                categorySelected: post.category,
+                categories: categories
+            });
+        })
+
     } catch (err) {
         console.log("ERRO" + err);
     }
 });
 router.post("/post/newedit", (req, res) => {
-    editPost(req.body.id, req.body.title, req.body.slug, req.body.description, req.body.content, /*req.body.category*/)
+    editPost(req.body.id, req.body.title, req.body.slug, req.body.description, req.body.content, req.body.category)
         .then(() => {
             req.flash("success_msg", "Postagem editada com sucesso!");
             res.redirect("../post");

@@ -19,7 +19,7 @@ const createNewPost = async(title, slug, description, content, category) => {
             slug: slug,
             description: description,
             content: content,
-            // category: category
+            category: category
         });
 
         const result = await newPost.save();
@@ -31,6 +31,7 @@ const createNewPost = async(title, slug, description, content, category) => {
 
 const editPost = async(id, title, slug, description, content, category) =>{
     try{
+        console.log(id,title,slug,description, content, category);
         const updatePost = await Post.findByIdAndUpdate(
             id, 
             {$set: {
@@ -38,6 +39,7 @@ const editPost = async(id, title, slug, description, content, category) =>{
                 slug: slug,
                 description: description,
                 content: content,
+                category: category
             }},
             { new: true }
         );
