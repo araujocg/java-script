@@ -6,6 +6,11 @@ const path = require("path");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const flash = require("connect-flash");
+require("./models/post");
+require("./models/category");
+
+const Category = mongoose.model('category');
+const Post = mongoose.model('post');
 
 const app = express();
 
@@ -68,9 +73,21 @@ const app = express();
 // Routes
 
     app.use("/admin", admin);
+
     app.get('/', (req, res) => {
-        res.send('Home Page!');
+        Post.findOne().populate("category").sort({data: "desc"}).then((posts) => {
+            res.render("index", {posts: posts});
+        })
+        .catch((err) => {
+            req.flash("error_msg", "Houve um erro interno");
+            res.redirect("/404");
+        })
     });
+
+    app.get('/404', (req,res) => {
+        res.send("Erro 404!")
+    });
+
     app.get('/posts', (req, res) => {
         res.send('Posts list');
     });
