@@ -75,7 +75,7 @@ const app = express();
     app.use("/admin", admin);
 
     app.get('/', (req, res) => {
-        Post.findOne().populate("category").sort({data: "desc"}).then((posts) => {
+        Post.find().populate("category").sort({data: "desc"}).then((posts) => {
             res.render("index", {posts: posts});
         })
         .catch((err) => {
