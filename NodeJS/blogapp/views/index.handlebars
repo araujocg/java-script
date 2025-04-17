@@ -14,6 +14,10 @@
         <div class="card-body">
             <h4>{{title}}</h4>
             <p>{{description}}</p>
+            <a href="/post/{{slug}}"><button class="btn btn-success">Leia mais</button></a>
+            <hr>
+            <small>Categoria: {{category.name}}</small><br>
+            <small>Data de publicação: {{date}}</small>
         </div>
     </div>
 {{else}}

@@ -84,6 +84,20 @@ const app = express();
         })
     });
 
+    app.get('/post/:slug', (req, res) =>{
+        Post.findOne({slug: req.params.slug}).then((post) =>{
+            if(post){
+                res.render("/post/index", {post: post})
+            } else{
+                req.flash("error_msg", "Está postagem não existe");
+                res.redirect("/");
+            }
+        }).catch((err) =>{
+            req.flash("error_msg", "Houve um erro interno");
+            res.redirect("/404");
+        })
+    })
+
     app.get('/404', (req,res) => {
         res.send("Erro 404!")
     });
