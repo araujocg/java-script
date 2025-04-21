@@ -85,9 +85,9 @@ const app = express();
     });
 
     app.get('/post/:slug', (req, res) =>{
-        Post.findOne({slug: req.params.slug}).then((post) =>{
+        Post.findOne({slug: req.params.slug}).populate("category").then((post) =>{
             if(post){
-                res.render("/post/index", {post: post})
+                res.render("post/index", {post: post})
             } else{
                 req.flash("error_msg", "Está postagem não existe");
                 res.redirect("/");
