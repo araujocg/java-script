@@ -84,6 +84,16 @@ const app = express();
         })
     });
 
+    app.get('/categories', (req,res) => {
+        Category.find().sort({data: "desc"}).then((categories) =>{
+            res.render("categories/index", {categories: categories});
+        })
+        .catch((err) => {
+            req.flash("error_msg", "Houve um erro interno");
+            res.redirect("/404");
+        })
+    })
+
     app.get('/post/:slug', (req, res) =>{
         Post.findOne({slug: req.params.slug}).populate("category").then((post) =>{
             if(post){
@@ -92,6 +102,17 @@ const app = express();
                 req.flash("error_msg", "Está postagem não existe");
                 res.redirect("/");
             }
+        }).catch((err) =>{
+            req.flash("error_msg", "Houve um erro interno");
+            res.redirect("/404");
+        })
+    })
+
+    app.get('/categories/:slug', (req,res) =>{
+        Category.findOne({slug: req.params.slug}).then((category) =>{
+            Post.find({category: category._id}).then((posts) =>{
+                res.render("categories/posts", {posts: posts, category: category});
+            })
         }).catch((err) =>{
             req.flash("error_msg", "Houve um erro interno");
             res.redirect("/404");
