@@ -10,7 +10,7 @@ router.get("/register", (req, res) => {
     res.render("users/register");
 });
 
-router.post("register", (req, res) => {
+router.post("/register", (req, res) => {
     var error = []
 
     if (!req.body.name || typeof req.body.name == undefined || req.body.name == null) {
@@ -34,9 +34,19 @@ router.post("register", (req, res) => {
     }
 
     if(error.length > 0){
-
+        res.render("users/register", {error: error})
     } else{
-        res.render("user/register", {error: error})
+        User.findOne({email: req.body.email}).then((user) => {
+            if(user){
+                req.flash("error_msg", "Já existe uma conta com este e-mail no nosso sistema, tente novamente!");
+                res.redirect("/register")
+            } else {
+
+            }
+        }).catch((err) => {
+            req.flash("error_msg", "Houve um erro interno");
+            res.redirect("/")
+        })
     }
 
 })
