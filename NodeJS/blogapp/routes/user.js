@@ -11,7 +11,7 @@ router.get("/register", (req, res) => {
 });
 
 router.post("/register", (req, res) => {
-    var error = []
+    let error = []
 
     if (!req.body.name || typeof req.body.name == undefined || req.body.name == null) {
         error.push({ text: "Nome inválido" })
@@ -25,8 +25,8 @@ router.post("/register", (req, res) => {
         error.push({ text: "Senha inválida" })
     }
 
-    if (req.body.password.length <= 4) {
-        ErrorMessage.push({ text: "Senha muito curta!"})
+    if (req.body.password.length < 4) {
+        error.push({ text: "Senha muito curta!"})
     }
 
     if (req.body.password != req.body.repeatedPassword) {
@@ -39,9 +39,9 @@ router.post("/register", (req, res) => {
         User.findOne({email: req.body.email}).then((user) => {
             if(user){
                 req.flash("error_msg", "Já existe uma conta com este e-mail no nosso sistema, tente novamente!");
-                res.redirect("/register")
+                res.redirect("/users/register")
             } else {
-
+                createNewUser(req.body.name, req.body.email, req.body.password)
             }
         }).catch((err) => {
             req.flash("error_msg", "Houve um erro interno");
