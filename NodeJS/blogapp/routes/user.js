@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const { createNewUser } = require("../models/user")
 require("../models/user");
+const { redirect } = require('react-router-dom');
 
 const User = mongoose.model('user');
 
@@ -39,9 +40,15 @@ router.post("/register", (req, res) => {
         User.findOne({email: req.body.email}).then((user) => {
             if(user){
                 req.flash("error_msg", "Já existe uma conta com este e-mail no nosso sistema, tente novamente!");
-                res.redirect("/users/register")
+                res.redirect("/users/register");
             } else {
-                createNewUser(req.body.name, req.body.email, req.body.password)
+                createNewUser(req.body.name, req.body.email, req.body.password).then(() => {
+                    req.flash("success_msg", "Usuário criado com sucesso!");
+                    res.redirect("/");
+                }).catch((err) => {
+                    req.flash("error_msg", "Falha ao criar o usuário!");
+                    res.redirect("/users/register");
+                })
             }
         }).catch((err) => {
             req.flash("error_msg", "Houve um erro interno");
