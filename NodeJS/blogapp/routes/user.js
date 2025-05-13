@@ -27,18 +27,18 @@ router.post("/register", (req, res) => {
     }
 
     if (req.body.password.length < 4) {
-        error.push({ text: "Senha muito curta!"})
+        error.push({ text: "Senha muito curta!" })
     }
 
     if (req.body.password != req.body.repeatedPassword) {
         error.push({ text: "As senhas são diferentes, tente novamente!" })
     }
 
-    if(error.length > 0){
-        res.render("users/register", {error: error})
-    } else{
-        User.findOne({email: req.body.email}).then((user) => {
-            if(user){
+    if (error.length > 0) {
+        res.render("users/register", { error: error })
+    } else {
+        User.findOne({ email: req.body.email }).then((user) => {
+            if (user) {
                 req.flash("error_msg", "Já existe uma conta com este e-mail no nosso sistema, tente novamente!");
                 res.redirect("/users/register");
             } else {
@@ -56,6 +56,29 @@ router.post("/register", (req, res) => {
         })
     }
 
+})
+
+router.get("/login", (req, res) => {
+    res.render("users/login");
+})
+
+router.post("login", (req, res) => {
+    let error = []
+
+    if (!req.body.email || typeof req.body.email == undefined || req.body.email == null) {
+        error.push({ text: "Email inválido" })
+    }
+
+    if (!req.body.password || typeof req.body.password == undefined || req.body.password == null) {
+        error.push({ text: "Senha inválida" })
+    }
+
+
+    if (error.length > 0) {
+        res.render("users/login", { error: error })
+    } else {
+        
+    }
 })
 
 

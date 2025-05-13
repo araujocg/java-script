@@ -21,7 +21,7 @@ const createNewUser = async (name, email, password, admin) => {
             admin: admin
         });
 
-        bcrypt.genSalt(10, (error, salt) => {
+        bcrypt.genSalt(10, (error, salt) => { // função assincrona
             if (error) {
                 console.error("Erro ao gerar o salt:", error);
                 return;
