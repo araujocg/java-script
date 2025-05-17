@@ -10,7 +10,7 @@ const flash = require("connect-flash");
 passport = require("passport");
 require("./models/post");
 require("./models/category");
-require("./config/auth")(passport)
+require("./config/auth")(passport);
 
 const Category = mongoose.model('category');
 const Post = mongoose.model('post');
