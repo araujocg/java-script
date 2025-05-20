@@ -8,12 +8,12 @@ module.exports = function(passport){
     passport.use(new localStrategy({usernameField: "email"}, (email, password, done) => {
         User.findOne({email: email}).then((user) =>{
             if(!user){
-                return done(null, false, {massage: "Está conta não existe"})
+                return done(null, false, {message: "Está conta não existe"})
             }
 
             bcrypt.compare(password, user.password, (error, equal) =>{
                 if(equal){
-                    return done(user);
+                    return done(null, user);
                 } else{
                     return done(null, false, {message: "Senha incorreta"})
                 }
@@ -25,10 +25,13 @@ module.exports = function(passport){
         done(null, user.id);
     })
 
-    passport.deserializeUser((id, done) =>{
-        User.findById(id, (err, user) => {
-            done(err, user)
-        })
+    passport.deserializeUser(async (id, done) =>{
+        try{
+            const user = await User.findById(id);
+            done(null, user);
+        }catch(err){
+            done(err, null);
+        }
     })
 
 };

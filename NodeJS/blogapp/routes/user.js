@@ -62,23 +62,12 @@ router.get("/login", (req, res) => {
     res.render("users/login");
 })
 
-router.post("login", (req, res) => {
-    let error = []
-
-    if (!req.body.email || typeof req.body.email == undefined || req.body.email == null) {
-        error.push({ text: "Email inválido" })
-    }
-
-    if (!req.body.password || typeof req.body.password == undefined || req.body.password == null) {
-        error.push({ text: "Senha inválida" })
-    }
-
-
-    if (error.length > 0) {
-        res.render("users/login", { error: error })
-    } else {
-        
-    }
+router.post("/login", (req, res, next) => {
+    passport.authenticate("local", {
+        successRedirect: "/",
+        failureRedirect: "/users/login",
+        failureFlash: true
+    })(req, res, next)
 })
 
 
