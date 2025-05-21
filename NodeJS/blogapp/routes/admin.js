@@ -5,21 +5,22 @@ const { createNewCategory, editCategory } = require("../models/category");
 const { createNewPost, editPost } = require("../models/post")
 require("../models/post");
 const { redirect } = require('react-router-dom');
+const { adminAuthentication } = require("../helpers/adminAuthentication");
 
 const Category = mongoose.model('category');
 const Post = mongoose.model('post');
 
-router.get('/', (req, res) => {
+router.get('/', adminAuthentication, (req, res) => {
     res.render("admin/index");
 });
 
-router.get('/category', (req, res) => {
+router.get('/category', adminAuthentication, (req, res) => {
     Category.find().sort({ date: 'desc' }).then((categories) => {
         res.render("admin/category", { categories: categories });
     })
 });
 
-router.get('/post', (req, res) => {
+router.get('/post', adminAuthentication, (req, res) => {
     // Post.find().sort({date: 'desc'}).then((posts) => {
     //     res.render("admin/post", {posts: posts});
     // })
@@ -28,17 +29,17 @@ router.get('/post', (req, res) => {
     })
 });
 
-router.get('/category/add', (req, res) => {
+router.get('/category/add', adminAuthentication, (req, res) => {
     res.render("admin/addcategory");
 });
 
-router.get("/post/add", (req, res) => {
+router.get("/post/add", adminAuthentication, (req, res) => {
     Category.find().sort({ date: 'desc' }).then((categories) => {
         res.render("admin/addpost", { categories: categories });
     })
 });
 
-router.post('/category/new', async (req, res) => {
+router.post('/category/new', adminAuthentication, async (req, res) => {
 
     const error = [];
     if (!req.body.name || typeof req.body.name == undefined || req.body.name == null) {
@@ -69,7 +70,7 @@ router.post('/category/new', async (req, res) => {
     }
 });
 
-router.post('/post/new', async (req, res) => {
+router.post('/post/new', adminAuthentication, async (req, res) => {
     const error = [];
     if (!req.body.title || typeof req.body.title == undefined || req.body.title == null) {
         error.push({ text: "Título invalido" });
@@ -94,7 +95,7 @@ router.post('/post/new', async (req, res) => {
     }
 })
 
-router.get("/category/edit/:id", async (req, res) => {
+router.get("/category/edit/:id", adminAuthentication, async (req, res) => {
     try {
         const category = await Category.findOne({ _id: req.params.id });
 
@@ -107,7 +108,7 @@ router.get("/category/edit/:id", async (req, res) => {
         console.log("ERRO" + err);
     }
 });
-router.post("/category/newedit", (req, res) => {
+router.post("/category/newedit", adminAuthentication, (req, res) => {
     editCategory(req.body.id, req.body.name, req.body.slug)
         .then(() => {
             req.flash("success_msg", "Categoria editada com sucesso!");
@@ -120,7 +121,7 @@ router.post("/category/newedit", (req, res) => {
         })
 });
 
-router.get("/post/edit/:id", async (req, res) => {
+router.get("/post/edit/:id", adminAuthentication, async (req, res) => {
     try {
         const post = await Post.findOne({ _id: req.params.id }).populate("category");
 
@@ -140,7 +141,7 @@ router.get("/post/edit/:id", async (req, res) => {
         console.log("ERRO" + err);
     }
 });
-router.post("/post/newedit", (req, res) => {
+router.post("/post/newedit", adminAuthentication, (req, res) => {
     editPost(req.body.id, req.body.title, req.body.slug, req.body.description, req.body.content, req.body.category)
         .then(() => {
             req.flash("success_msg", "Postagem editada com sucesso!");
@@ -170,7 +171,7 @@ router.post("/post/newedit", (req, res) => {
 //     }
 // })
 
-router.get("/post/delete/:id", async (req, res) => {
+router.get("/post/delete/:id", adminAuthentication, async (req, res) => {
     try {
         await Post.deleteOne({ _id: req.params.id });
         req.flash("success_msg", "Post deletado com sucesso!");
@@ -181,7 +182,7 @@ router.get("/post/delete/:id", async (req, res) => {
     }
 });
 
-router.get("/category/delete/:id", async (req, res) => {
+router.get("/category/delete/:id", adminAuthentication, async (req, res) => {
     try {
         await Category.deleteOne({ _id: req.params.id });
         req.flash("success_msg", "Categoria deletada com sucesso!");
